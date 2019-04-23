@@ -1,3 +1,5 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/m13t/terraform-provider-testing)](https://goreportcard.com/report/github.com/m13t/terraform-provider-testing)
+
 # Testing for Terraform in Terraform
 
 Terraform is great but there's not much in the way of ability to test what you've written.
