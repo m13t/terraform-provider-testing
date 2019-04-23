@@ -6,7 +6,7 @@ This project aims to address that problem.
 This project was inspired by some of the [internal terraform code][1] and some
 [experimental code][2] by [Martin Atkins][3]. Martin's code was a good starting
 point for some design considerations, but unlike the code from Martin, this uses
-the official Gotlang Terraform SDK.
+the official Golang Terraform SDK.
 
 > **Disclaimer**
 >
