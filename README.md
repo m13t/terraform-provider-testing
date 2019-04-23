@@ -76,7 +76,7 @@ expected output as specified in the `integer_equal` block.
 
 ## Installing
 
-You can grab a binary build from the [GitLab releases][5] page, or you can build it yourself
+You can grab a binary build from the [GitHub releases][5] page, or you can build it yourself
 with `go build -v`.
 
 Place the binary inside the `~/.terraform.d/plugins` directory (create it if it doesn't exist)
