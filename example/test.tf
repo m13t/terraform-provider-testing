@@ -1,3 +1,7 @@
+resource "testing_report" "html" {
+	path = format("%s/report.html", path.module)
+}
+
 data "testing_unit" "static" {
 	subject = "static tests"
 
@@ -87,9 +91,9 @@ data "testing_unit" "static" {
 }
 
 output "passed_tests" {
-	value = "${data.testing_unit.static.passed}"
+	value = data.testing_unit.static.passed
 }
 
 output "failed_tests" {
-	value = "${data.testing_unit.static.failed}"
+	value = data.testing_unit.static.failed
 }
