@@ -62,7 +62,7 @@ func dataSourceUnitRead(d *schema.ResourceData, m interface{}) error {
 					"[%s] %s", d.Get("subject"), s))
 			} else {
 				failed = append(failed, fmt.Sprintf(
-					"[%s] %s", d.Get("subject"), s))
+					"[%s] %s - expected '%v' but got '%v'", d.Get("subject"), s, e, i))
 			}
 
 			// Log result
