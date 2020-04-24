@@ -15,12 +15,12 @@ func assertionFactory(t schema.ValueType) *schema.Schema {
 
 				"input": {
 					Type:     t,
-					Required: true,
+					Optional: true,
 				},
 
 				"expect": {
 					Type:     t,
-					Required: true,
+					Optional: true,
 				},
 			},
 		},
