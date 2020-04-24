@@ -1,99 +1,113 @@
 resource "testing_report" "html" {
-	path = format("%s/report.html", path.module)
+  path = format("%s/report.html", path.module)
 }
 
 data "testing_unit" "static" {
-	subject = "static tests"
+  subject = "static tests"
 
-	bool_equal {
-		statement = "true should equal true"
+  string_equal {
+    statement = "test"
 
-		input = true
-		expect = true
-	}
+    input  = null
+    expect = "test"
+  }
 
-	bool_not_equal {
-		statement = "false should not equal true"
+  bool_equal {
+    statement = "true should equal true"
 
-		input = false
-		expect = true
-	}
+    input  = true
+    expect = true
+  }
 
-	string_equal {
-		statement = "X should equal X"
+  bool_equal {
+    statement = "testing another bool equal"
 
-		input = "X"
-		expect = "X"
-	}
+    input  = true
+    expect = true
+  }
 
-	string_not_equal {
-		statement = "X should not equal Y"
+  bool_not_equal {
+    statement = "false should not equal true"
 
-		input = "X"
-		expect = "Y"
-	}
+    input  = false
+    expect = true
+  }
 
-	integer_equal {
-		statement = "10 should equal 10"
+  string_equal {
+    statement = "X should equal X"
 
-		input = 10
-		expect = 10
-	}
+    input  = "X"
+    expect = "X"
+  }
 
-	integer_not_equal {
-		statement = "10 should not equal 20"
+  string_not_equal {
+    statement = "X should not equal Y"
 
-		input = 10
-		expect = 20
-	}
+    input  = "X"
+    expect = "Y"
+  }
 
-	integer_less_than {
-		statement = "10 should be less than 100"
+  integer_equal {
+    statement = "10 should equal 10"
 
-		input = 10
-		expect = 100
-	}
+    input  = 10
+    expect = 10
+  }
 
-	integer_greater_than {
-		statement = "100 should be greater than 10"
+  integer_not_equal {
+    statement = "10 should not equal 20"
 
-		input = 100
-		expect = 10
-	}
+    input  = 10
+    expect = 20
+  }
 
-	float_equal {
-		statement = "3.142 should equal 3.142"
+  integer_less_than {
+    statement = "10 should be less than 100"
 
-		input = 3.142
-		expect = 3.142
-	}
+    input  = 10
+    expect = 100
+  }
 
-	float_not_equal {
-		statement = "3.142 should not equal 31.42"
+  integer_greater_than {
+    statement = "100 should be greater than 10"
 
-		input = 3.142
-		expect = 3.142
-	}
+    input  = 100
+    expect = 10
+  }
 
-	float_less_than {
-		statement = "3.142 should be less than 31.42"
+  float_equal {
+    statement = "3.142 should equal 3.142"
 
-		input = 3.142
-		expect = 31.42
-	}
+    input  = 3.142
+    expect = 3.142
+  }
 
-	float_greater_than {
-		statement = "31.42 should be less than 3.142"
+  float_not_equal {
+    statement = "3.142 should not equal 31.42"
 
-		input = 31.42
-		expect = 3.142
-	}
+    input  = 3.142
+    expect = 3.142
+  }
+
+  float_less_than {
+    statement = "3.142 should be less than 31.42"
+
+    input  = 3.142
+    expect = 31.42
+  }
+
+  float_greater_than {
+    statement = "31.42 should be less than 3.142"
+
+    input  = 31.42
+    expect = 3.142
+  }
 }
 
 output "passed_tests" {
-	value = data.testing_unit.static.passed
+  value = data.testing_unit.static.passed
 }
 
 output "failed_tests" {
-	value = data.testing_unit.static.failed
+  value = data.testing_unit.static.failed
 }
