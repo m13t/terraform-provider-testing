@@ -1,5 +1,5 @@
-resource "testing_report" "html" {
-  path = format("%s/report.html", path.module)
+provider "testing" {
+  fail = false
 }
 
 data "testing_unit" "static" {
