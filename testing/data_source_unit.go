@@ -1,8 +1,10 @@
 package testing
 
 import (
+	"errors"
 	"fmt"
 	"log"
+	"strings"
 	"time"
 
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
@@ -78,13 +80,12 @@ func dataSourceUnitRead(d *schema.ResourceData, m interface{}) error {
 	d.Set("passed", passed)
 	d.Set("failed", failed)
 
-	/*
-		 * If we want to fail on errors. I'll make this configurable later
-		 *
-		if len(failed) > 0 {
-			return errors.New(strings.Join(failed, "\n"))
-		}
-	*/
+	// Get config
+	c := m.(*config)
+
+	if len(failed) > 0 && c.failOnFailure {
+		return errors.New(strings.Join(failed, "\n"))
+	}
 
 	// Return no errors
 	return nil
