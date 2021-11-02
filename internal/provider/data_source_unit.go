@@ -1,20 +1,22 @@
-package testing
+package provider
 
 import (
-	"errors"
+	"context"
 	"fmt"
 	"log"
 	"strings"
 	"time"
 
+	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 func dataSourceUnit() *schema.Resource {
 	s := map[string]*schema.Schema{
 		"subject": {
-			Type:     schema.TypeString,
-			Required: true,
+			Description: "a description of the test being performed",
+			Type:        schema.TypeString,
+			Required:    true,
 		},
 
 		"passed": {
@@ -39,12 +41,12 @@ func dataSourceUnit() *schema.Resource {
 	}
 
 	return &schema.Resource{
-		Read:   dataSourceUnitRead,
-		Schema: s,
+		ReadContext: dataSourceUnitRead,
+		Schema:      s,
 	}
 }
 
-func dataSourceUnitRead(d *schema.ResourceData, m interface{}) error {
+func dataSourceUnitRead(ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics {
 	log.Printf("[LL] Subject: %s\n", d.Get("subject"))
 
 	var passed []string
@@ -84,7 +86,7 @@ func dataSourceUnitRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*config)
 
 	if len(failed) > 0 && c.failOnFailure {
-		return errors.New(strings.Join(failed, "\n"))
+		return diag.Errorf(strings.Join(failed, "\n"))
 	}
 
 	// Return no errors
