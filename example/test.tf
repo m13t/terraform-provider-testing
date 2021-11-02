@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    testing = {
+      version = "~> 1.0.0"
+      source  = "terraform.m13t.io/local/testing"
+    }
+  }
+}
+
 provider "testing" {
   fail = false
 }
