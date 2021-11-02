@@ -1,8 +1,8 @@
 terraform {
   required_providers {
     testing = {
-      version = "~> 1.0.0"
-      source  = "terraform.m13t.io/local/testing"
+      source = "m13t/testing"
+      version = "1.0.0-beta.1"
     }
   }
 }
