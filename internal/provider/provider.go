@@ -16,9 +16,10 @@ func Provider() *schema.Provider {
 		ConfigureContextFunc: providerConfigure,
 		Schema: map[string]*schema.Schema{
 			"fail": {
-				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  false,
+				Description: "Whether Terraform should exit with a failure if any assertions fail.",
+				Type:        schema.TypeBool,
+				Optional:    true,
+				Default:     false,
 			},
 		},
 

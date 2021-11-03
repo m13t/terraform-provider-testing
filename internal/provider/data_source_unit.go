@@ -14,22 +14,24 @@ import (
 func dataSourceUnit() *schema.Resource {
 	s := map[string]*schema.Schema{
 		"subject": {
-			Description: "a description of the test being performed",
+			Description: "Human friendly description describing the assertions being defined",
 			Type:        schema.TypeString,
 			Required:    true,
 		},
 
 		"passed": {
-			Type:     schema.TypeList,
-			Computed: true,
+			Description: "Assertions that have passed",
+			Type:        schema.TypeList,
+			Computed:    true,
 			Elem: &schema.Schema{
 				Type: schema.TypeString,
 			},
 		},
 
 		"failed": {
-			Type:     schema.TypeList,
-			Computed: true,
+			Description: "Assertions that have failed",
+			Type:        schema.TypeList,
+			Computed:    true,
 			Elem: &schema.Schema{
 				Type: schema.TypeString,
 			},
@@ -41,6 +43,7 @@ func dataSourceUnit() *schema.Resource {
 	}
 
 	return &schema.Resource{
+		Description: "Defines a collection of assertions that are grouped together logically",
 		ReadContext: dataSourceUnitRead,
 		Schema:      s,
 	}
